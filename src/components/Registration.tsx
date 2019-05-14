@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
-export default class Registration extends Component {
+import { Redirect } from 'react-router';
+export default class Registration extends Component<{},IState> {
     constructor(props : {}){
         super(props);
 
         this.state = {
             name:"",
             email: "",
-            password: ""
+            password: "",
+            redirect: false
         }
     }
     handleSubmit(event: any){
@@ -28,12 +30,15 @@ export default class Registration extends Component {
             let response = await fetch('/auth/register',pararms);
             // let data = await response.json();
             console.log('response.ok',response.ok);
-        
+            this.setState({redirect:true})
         } catch (error) {
             console.log(error);
         }
     }
     render() {
+        if(this.state.redirect){
+            return <Redirect push to="/todolist"/>
+        }
         return (
             <div>
                 <form onSubmit={(event) => this.handleSubmit(event)}>
@@ -45,4 +50,11 @@ export default class Registration extends Component {
             </div>
         )
     }
+}
+
+interface IState {
+    name: string,
+    email: string,
+    password: string,
+    redirect : Boolean
 }
