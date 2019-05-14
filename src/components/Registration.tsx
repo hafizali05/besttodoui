@@ -23,11 +23,12 @@ export default class Registration extends Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(user)
-        }
+        }        
         try {
-            const result = fetch('/auth/register',pararms);
-            const Json = await result;
-            console.log(Json);
+            let response = await fetch('/auth/register',pararms);
+            // let data = await response.json();
+            console.log('response.ok',response.ok);
+        
         } catch (error) {
             console.log(error);
         }
@@ -37,8 +38,8 @@ export default class Registration extends Component {
             <div>
                 <form onSubmit={(event) => this.handleSubmit(event)}>
                     <input type="text" placeholder="name" onChange= {event => this.setState({name: event.target.value}) } />
-                    <input type="email" placeholder="email" onChange= {event => this.setState({name: event.target.value}) }/>
-                    <input type="password" placeholder="password" onChange= {event => this.setState({name: event.target.value}) }/>
+                    <input type="email" placeholder="email" onChange= {event => this.setState({email: event.target.value}) }/>
+                    <input type="password" placeholder="password" onChange= {event => this.setState({password: event.target.value}) }/>
                     <button type="submit">Register</button>
                 </form>
             </div>
