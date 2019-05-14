@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router';
-export default class Registration extends Component<{},IState> {
+export default class Registration extends Component<{},IRegister> {
     constructor(props : {}){
         super(props);
 
@@ -52,7 +52,7 @@ export default class Registration extends Component<{},IState> {
     }
 }
 
-interface IState {
+interface IRegister {
     name: string,
     email: string,
     password: string,
