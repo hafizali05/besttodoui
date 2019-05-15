@@ -1,6 +1,6 @@
 import React from 'react';
 import Registration from './components/Registration';
-import Logout from './components/Logout';
+// import Logout from './components/Logout';
 import Login from './components/Login';
 import TodoPage from './components/TodoPage';
 import { BrowserRouter, Route } from "react-router-dom";
