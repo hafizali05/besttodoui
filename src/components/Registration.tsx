@@ -32,7 +32,6 @@ export default class Registration extends Component<{},IRegister> {
             let data = await response.json();
             console.log('data',data);
             localStorage.setItem('userToken',data.userToken);
-            // console.log(token);
             this.setState({redirect:true})
         } catch (error) {
             console.log(error);
@@ -40,7 +39,7 @@ export default class Registration extends Component<{},IRegister> {
     }
     render() {
         if(this.state.redirect){
-            return <Redirect push to="/todolist"/>
+            return <Redirect push to="/"/>
         }
         return (
             <div>
