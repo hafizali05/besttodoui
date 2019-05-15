@@ -11,7 +11,7 @@ const App: React.FC = () => {
     <BrowserRouter>
       <div>
         <header><h1>React typescript todo list</h1>
-          <Logout />
+          {/* <Logout /> */}
         </header>
         <Route exact path="/" component={Login} />
         <Route path="/register" component={Registration} />
