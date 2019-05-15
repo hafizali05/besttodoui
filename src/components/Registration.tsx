@@ -12,24 +12,27 @@ export default class Registration extends Component<{},IRegister> {
         }
     }
     handleSubmit(event: any){
-        console.log(event);
         event.preventDefault();
         let user = this.state;
         this.registerUser(user)
     }
     async registerUser(user:any){
-        let pararms = {
+        let pararms:any = {
             method: "POST",
-            headers: {
+            headers: new Headers({
+                // 'Authorization': 'Basic '+btoa(`${user.email+':'+user.password}`), 
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
-            },
+            }),
+            credentials:'include',
             body: JSON.stringify(user)
         }        
         try {
             let response = await fetch('/auth/register',pararms);
-            // let data = await response.json();
-            console.log('response.ok',response.ok);
+            let data = await response.json();
+            console.log('data',data);
+            localStorage.setItem('userToken',data.userToken);
+            // console.log(token);
             this.setState({redirect:true})
         } catch (error) {
             console.log(error);
