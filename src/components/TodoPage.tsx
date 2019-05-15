@@ -14,11 +14,16 @@ export default class TodoPage extends Component<{}, ITodo> {
     }
     async addTodo(data: any) {
         console.log(data);
+        let userToken:any = localStorage.getItem("userToken");
+        console.log(userToken);
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Accept', 'application/json');        
+        headers.append('Authorization',userToken)
         let params:any = {
             method: "POST",
-            withCredentials: true,
-            credentials: 'same-orgin',
-            headers: new Headers({'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded'}),
+            credentials: 'include', // Don't forget to specify this if you need cookies
+            headers,
             body: JSON.stringify(data)
             // mode:'no-cors'
         }
